@@ -1,25 +1,33 @@
-﻿namespace Test_Task
+﻿
+using System;
+using System.Collections.Generic;
+using System.Xml;
+using static Test_Task.Client_REST_API;
+namespace Test_Task
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
+        BinanceClient client = new BinanceClient();
 
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private async void GetInfo(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            try
+            {
+                var candles = await client.GetCandlesAsync();
+                CandlesCollectionView.ItemsSource = candles;
+                await DisplayAlert("ок", "Получение информации", "ок");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Ошибка", ex.Message, "OK");
+            }
         }
     }
-
 }
+
+

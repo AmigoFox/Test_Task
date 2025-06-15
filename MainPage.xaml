@@ -1,35 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Test_Task.MainPage">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="185"
-                Aspect="AspectFit"
-                SemanticProperties.Description="dot net bot in a hovercraft number nine" />
+        <VerticalStackLayout Padding="30,0" Spacing="25">
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+            <Button Text="Получить информацию о криптовалюте"
+                    Clicked="GetInfo"
+                    BackgroundColor="Black"
+                    TextColor="White"
+                    FontSize="20"
+                    CornerRadius="10"/>
 
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
+            <CollectionView x:Name="CandlesCollectionView"
+                            HeightRequest="800"
+                            Margin="0,20,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray" CornerRadius="8" Padding="10" Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding OpenTime, StringFormat='Дата: {0:yyyy-MM-dd HH:mm}'}" />
+                                <Label Text="{Binding OpenPrice, StringFormat='Open: {0:F2}'}" />
+                                <Label Text="{Binding HighPrice, StringFormat='High: {0:F2}'}" />
+                                <Label Text="{Binding LowPrice, StringFormat='Low: {0:F2}'}" />
+                                <Label Text="{Binding ClosePrice, StringFormat='Close: {0:F2}'}" />
+                                <Label Text="{Binding TotalVolume, StringFormat='Объем: {0:F4}'}" />
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
