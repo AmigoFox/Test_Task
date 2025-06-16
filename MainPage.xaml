@@ -5,12 +5,26 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
 
+            <Button Text="Открыть портфель"
+                    Clicked="OnOpenPortfolioClicked"
+                    BackgroundColor="DarkOliveGreen"
+                    TextColor="White"
+                    CornerRadius="10"/>
+
+
             <Button Text="Получить информацию о криптовалюте"
                     Clicked="GetInfo"
                     BackgroundColor="Black"
                     TextColor="White"
                     FontSize="20"
                     CornerRadius="10"/>
+
+            <Button Text="Показать баланс портфеля"
+                    Clicked="ShowBalanceClicked"
+                    BackgroundColor="DarkGreen"
+                    TextColor="White"
+                    FontSize="20"
+                    CornerRadius="10" />
 
             <CollectionView x:Name="CandlesCollectionView"
                             HeightRequest="800"

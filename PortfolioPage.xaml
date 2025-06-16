@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:local="clr-namespace:Test_Task"
+             x:Class="Test_Task.PortfolioPage"
+             Title="Портфель">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <Button Text="Рассчитать баланс портфеля"
+                Clicked="OnCalculatePortfolioClicked"
+                BackgroundColor="DarkSlateGray"
+                TextColor="White"
+                CornerRadius="10"/>
+        
+        <Label Text="Конвертированный баланс:" FontAttributes="Bold" FontSize="18" />
+        <CollectionView x:Name="PortfolioCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" Margin="5" Padding="10" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Currency}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Value, StringFormat='Баланс: {0:F2}'}"/>
+                            <Label Text="{Binding ConversionNote}" FontAttributes="Italic" FontSize="12" TextColor="Gray"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+
+        <Label Text="Исходный баланс:" FontAttributes="Bold" FontSize="18" />
+        <CollectionView x:Name="OriginalBalanceCollectionView">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="Gray" Margin="5" Padding="10" CornerRadius="10">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Currency}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Amount, StringFormat='Количество: {0:F2}'}"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+
+    </VerticalStackLayout>
+</ContentPage>
