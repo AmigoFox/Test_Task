@@ -31,5 +31,6 @@ namespace Test_Task
         void UnsubscribeCandles(string pair);
 
         #endregion
+
     }
 }

@@ -4,7 +4,21 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="30,0" Spacing="25">
-
+            <Picker x:Name="IntervalPicker"
+                Title="Выберите интервал"
+                SelectedIndexChanged="OnIntervalChanged">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>1m</x:String>
+                                <x:String>5m</x:String>
+                                <x:String>15m</x:String>
+                                <x:String>1h</x:String>
+                                <x:String>4h</x:String>
+                                <x:String>1d</x:String>
+                            </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            
             <Button Text="Открыть портфель"
                     Clicked="OnOpenPortfolioClicked"
                     BackgroundColor="DarkOliveGreen"
@@ -19,13 +33,6 @@
                     FontSize="20"
                     CornerRadius="10"/>
 
-            <Button Text="Показать баланс портфеля"
-                    Clicked="ShowBalanceClicked"
-                    BackgroundColor="DarkGreen"
-                    TextColor="White"
-                    FontSize="20"
-                    CornerRadius="10" />
-
             <CollectionView x:Name="CandlesCollectionView"
                             HeightRequest="800"
                             Margin="0,20,0,0">
@@ -33,7 +40,8 @@
                     <DataTemplate>
                         <Frame BorderColor="Gray" CornerRadius="8" Padding="10" Margin="5">
                             <VerticalStackLayout>
-                                <Label Text="{Binding OpenTime, StringFormat='Дата: {0:yyyy-MM-dd HH:mm}'}" />
+                                <Label Text="{Binding Pair, StringFormat='Пара: {0}'}" FontAttributes="Bold"/>
+                                <Label Text="{Binding OpenTime, StringFormat='Открытие: {0:yyyy-MM-dd HH:mm}'}" />
                                 <Label Text="{Binding OpenPrice, StringFormat='Open: {0:F2}'}" />
                                 <Label Text="{Binding HighPrice, StringFormat='High: {0:F2}'}" />
                                 <Label Text="{Binding LowPrice, StringFormat='Low: {0:F2}'}" />
@@ -44,7 +52,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
         </VerticalStackLayout>
     </ScrollView>
 
